@@ -17,7 +17,7 @@ void main(List<String> args) async {
     var packageList = packages["packages"];
     String? zoomFileUri;
     for (var package in packageList) {
-      if (package["name"] == "zoom_flutter_sdk") {
+      if (package["name"] == "flutter_zoom_sdk") {
         zoomFileUri = package["rootUri"];
         break;
       }
