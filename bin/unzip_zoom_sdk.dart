@@ -1,6 +1,6 @@
-import 'dart:core';
-import 'dart:io';
+
 import 'dart:convert';
+import 'dart:io';
 
 void main(List<String> args) async {
   var location = Platform.script.toString();
@@ -17,7 +17,7 @@ void main(List<String> args) async {
     var packageList = packages["packages"];
     String? zoomFileUri;
     for (var package in packageList) {
-      if (package["name"] == "flutter_zoom_sdk") {
+      if (package["name"] == "zoom_flutter_sdk") {
         zoomFileUri = package["rootUri"];
         break;
       }
@@ -43,18 +43,18 @@ void main(List<String> args) async {
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
-  var iosSDKFile = location +
-      '/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
+  var iosSDKFile = 
+      '$location/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
   bool exists = await File(iosSDKFile).exists();
 
   if (!exists) {
     await downloadFile(
-        Uri.parse('https://www.dropbox.com/s/a5vfh2m543t15k8/MobileRTC?dl=1'),
+        Uri.parse('https://www.dropbox.com/s/vcwtr7k17uyw2hi/MobileRTC?dl=1'),
         iosSDKFile);
   }
 
-  var iosSimulateSDKFile = location +
-      '/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
+  var iosSimulateSDKFile = 
+      '$location/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
   exists = await File(iosSimulateSDKFile).exists();
 
   if (!exists) {
@@ -63,20 +63,20 @@ Future<void> checkAndDownloadSDK(String location) async {
         iosSimulateSDKFile);
   }
 
-  var androidCommonLibFile = location + '/android/libs/commonlib.aar';
+  var androidCommonLibFile = '$location/android/libs/commonlib.aar';
   exists = await File(androidCommonLibFile).exists();
   if (!exists) {
     await downloadFile(
         Uri.parse(
-            'https://www.dropbox.com/s/i5fww50elzrphra/commonlib.aar?dl=1'),
+            'https://www.dropbox.com/s/9mexw9cut2e07k4/commonlib.aar?dl=1'),
         androidCommonLibFile);
   }
-  var androidRTCLibFile = location + '/android/libs/mobilertc.aar';
+  var androidRTCLibFile = '$location/android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
   if (!exists) {
     await downloadFile(
         Uri.parse(
-            'https://www.dropbox.com/s/ahh06pva216szc1/mobilertc.aar?dl=1'),
+            'https://www.dropbox.com/s/ea5klxep32xqr3u/mobilertc.aar?dl=1'),
         androidRTCLibFile);
   }
 }
